@@ -1,8 +1,9 @@
 #include <Car.h>
 
-Car::Car(const int carSpeed, const int roadLength, Vector2 position, Vector2 size) :
+Car::Car(const int carSpeed, TravelDirection travelDirection, const int roadLength, Vector2 position, Vector2 size) :
 	m_carSpeed(carSpeed),
-	m_resetPoint(roadLength),
+	m_travelDirection(travelDirection),
+	m_roadLength(roadLength),
 	ICollidable(position, size)
 {
 
@@ -25,12 +26,24 @@ void Car::Draw()
 
 void Car::Tick()
 {
-	//Move the car left.
-	m_position.x = m_position.x - m_carSpeed;
-
-	//Reset if whe have driven off the edge.
-	if ((m_position.x + m_size.x) <= 0)
+	if (m_travelDirection == LEFT)
 	{
-		m_position.x = m_resetPoint;
+		//Move the car.
+		m_position.x = m_position.x - m_carSpeed;
+
+		//Reset if whe have driven off the edge.
+		if ((m_position.x + m_size.x) <= 0)
+		{
+			m_position.x = static_cast<float>(m_roadLength);
+		}
+	}
+	else if (m_travelDirection == RIGHT)
+	{
+		m_position.x = m_position.x + m_carSpeed;
+
+		if ((m_position.x - m_size.x) >= static_cast<float>(m_roadLength))
+		{
+			m_position.x = 0 - m_size.x;
+		}
 	}
 }
