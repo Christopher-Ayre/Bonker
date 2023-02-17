@@ -6,7 +6,7 @@
 
 class Road: IRenderable{
 public:
-	Road(const int yPosition, const int width, const int length, const int numCars, const int carSpeed);
+	Road(const int yPosition, const int width, const int length, const int numCars, const int carSpeed, std::shared_ptr<std::vector<Car>> m_carList );
 	void Draw() override;
 	void Tick();
 private:
@@ -15,5 +15,5 @@ private:
 	const int m_length;
 	const int m_numCars;
 	const int m_carSpeed;
-	std::vector<std::unique_ptr<Car>> m_carList{};
+	std::shared_ptr<std::vector<Car>> m_carList{};
 };

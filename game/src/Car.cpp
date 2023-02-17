@@ -4,16 +4,11 @@ Car::Car(const int carSpeed, TravelDirection travelDirection, const int roadLeng
 	m_carSpeed(carSpeed),
 	m_travelDirection(travelDirection),
 	m_roadLength(roadLength),
-	ICollidable(position, size)
+	Collidable(position, size)
 {
 }
 
-bool Car::IsCollidingWith(ICollidable& otherObject) 
-{
-	return false;
-}
-
-void Car::OnCollision(ICollidable& otherObject)
+void Car::OnCollision(Collidable& otherObject)
 {
 	throw int(-1);
 }

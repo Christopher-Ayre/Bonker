@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include <raylib.h>
-#include <ICollidable.h>
+#include <Collidable.h>
 
 enum TravelDirection
 {
@@ -10,11 +10,10 @@ enum TravelDirection
 };
 
 
-class Car : public ICollidable {
+class Car : public Collidable {
 public:
 	Car(const int carSpeed, TravelDirection direction, const int roadLength, Vector2 position, Vector2 size);
-	bool IsCollidingWith(ICollidable& otherObject) override;
-	void OnCollision(ICollidable& otherObject) override;
+	void OnCollision(Collidable& otherObject) override;
 
 	void Draw();
 	void Tick();

@@ -1,13 +1,12 @@
 #pragma once
 #include <raylib.h>
-#include <ICollidable.h>
+#include <Collidable.h>
 
-class Bonk : public ICollidable {
+class Bonk : public Collidable {
 public:
 	Bonk(Vector2 position, Vector2 size);
 	void Draw();
 	void Tick();
 
-	bool IsCollidingWith(ICollidable& otherObject) override;
-	void OnCollision(ICollidable& otherObject) override;
+	void OnCollision(Collidable& otherObject) override;
 };

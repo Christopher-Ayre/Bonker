@@ -1,7 +1,7 @@
 #include <Bonk.h>
 
 Bonk::Bonk(Vector2 position, Vector2 size) :
-	ICollidable(position, size)
+	Collidable(position, size)
 {
 }
 
@@ -18,12 +18,7 @@ void Bonk::Tick()
 	if (IsKeyDown(KEY_S)) m_position.y += 2;
 }
 
-bool Bonk::IsCollidingWith(ICollidable& otherObject) 
-{
-	return false;
-}
-
-void Bonk::OnCollision(ICollidable& otherObject)
+void Bonk::OnCollision(Collidable& otherObject)
 {
 	throw int(-1);
 }

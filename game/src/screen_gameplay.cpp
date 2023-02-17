@@ -57,7 +57,7 @@ void UpdateGameplayScreen(void)
     // TODO: Update GAMEPLAY screen variables here!
     m_gameWorld->tick();
     // Press enter or tap to change to ENDING screen
-    if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
+    if (m_gameWorld->IsGameOver())
     {
         finishScreen = 1;
         PlaySound(fxCoin);
