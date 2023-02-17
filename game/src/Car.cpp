@@ -6,7 +6,6 @@ Car::Car(const int carSpeed, TravelDirection travelDirection, const int roadLeng
 	m_roadLength(roadLength),
 	ICollidable(position, size)
 {
-
 }
 
 bool Car::IsCollidingWith(ICollidable& otherObject) 
@@ -39,8 +38,10 @@ void Car::Tick()
 	}
 	else if (m_travelDirection == RIGHT)
 	{
+		//Move the car.
 		m_position.x = m_position.x + m_carSpeed;
 
+		//Reset if driven off edge.
 		if ((m_position.x - m_size.x) >= static_cast<float>(m_roadLength))
 		{
 			m_position.x = 0 - m_size.x;

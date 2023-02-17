@@ -4,6 +4,10 @@ GameWorld::GameWorld(const int screenWidth, const int screenHeight):
 	m_screenWidth(screenWidth),
 	m_screenHeight(screenHeight)
 {
+	Vector2 bonkSize{20,20};
+	Vector2 bonkPosition{(m_screenWidth + bonkSize.x)/2 , m_screenHeight - bonkSize.y};
+	m_bonk = std::make_unique<Bonk>(bonkPosition, bonkSize);
+
 	auto level1 = std::make_unique<Level>();
 	level1->sm_roads.push_back(std::make_unique<Road>(80, 100, m_screenWidth, 1, 10));
 	level1->sm_roads.push_back(std::make_unique<Road>(280, 100, m_screenWidth, 2, 20));
@@ -17,6 +21,8 @@ void GameWorld::draw()
 	{
 		road->Draw();
 	}
+
+	m_bonk->Draw();
 }
 
 void GameWorld::tick()
@@ -25,4 +31,6 @@ void GameWorld::tick()
 	{
 		road->Tick();
 	}
+
+	m_bonk->Tick();
 }
